@@ -1,5 +1,5 @@
-BC Ferries Location API
-----------------------
+BC Ferries Location Library
+---------------------------
 
 ### Routes Available
 
