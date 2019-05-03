@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+
+<html>
+  <head>
+    <title>BCFerries: Vessel Locations</title>
+
+	   <!-- -------------------------------------- -->
+	   <!-- BC Ferries Vessel Mapping              -->
+	   <!-- Created by AppLocation Systems Inc.    -->
+	   <!-- www.AppLocation.net                    -->
+	   <!-- (250) 220-7122                         -->
+	   <!-- -------------------------------------- -->
+
+    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <style type="text/css">
+body {
+	background: #003366;
+	color: #000000;
+	margin: 0px;
+}
+    </style>
+    <META HTTP-EQUIV="imagetoolbar" CONTENT="no">
+    <script language="JavaScript" type="text/JavaScript">
+<!--
+
+var infoBoxShowing = -1;
+var x;
+var y;
+
+function setOpacity(obj, opacity) {
+  opacity = (opacity == 100)?99.999:opacity;
+  // IE/Win
+  obj.style.filter = "alpha(opacity:"+opacity+")";
+  // Safari<1.2, Konqueror
+  obj.style.KHTMLOpacity = opacity/100; 
+  // Older Mozilla and Firefox
+  obj.style.MozOpacity = opacity/100; 
+  // Safari 1.2, newer Firefox and Mozilla, CSS3
+  obj.style.opacity = opacity/100;
+}
+
+function fadeIn(objID, opacity) {
+  if (document.getElementById) {
+    obj = document.getElementById(objID);
+    if (opacity <= 100) {
+      setOpacity(obj, opacity);
+      opacity += 10;
+      window.setTimeout("fadeIn('" + objID + "', "+opacity+")", 20);
+    }
+  }
+}
+
+function showVesselBox(obj) {
+	setOpacity(obj, 0);
+	obj.style.display = "block";
+	fadeIn('ferry_info', 0);
+}
+
+function hideVesselBox(obj) {
+	obj.style.display = "none";
+}
+
+function getMouseXY(e) {
+	if (!e) e = window.event;
+	if (e) {
+		if (e.x || e.y) {
+			x = e.x;
+			y = e.y;
+		} else if (e.pageX || e.pageY) {
+			x = e.pageX;
+			y = e.pageY;
+		} else if (e.clientX || e.clientY) {
+			x = e.clientX + document.body.scrollLeft;
+			y = e.clientY + document.body.scrollTop;
+		}
+	}
+}
+
+function onMapHover(e) {
+	getMouseXY(e);
+	
+	var ferryInfo = document.getElementById('ferry_info');
+	
+{
+		if (infoBoxShowing != -1) {
+			hideVesselBox(ferryInfo);
+			infoBoxShowing = -1;
+		}
+	}
+}
+
+function onPageLoad() {
+	document.getElementById('map_image').onmousemove = onMapHover;
+}
+
+//-->
+		</script>
+  </head>
+  <body onload="javascript:onPageLoad();">
+	<div id="map_image" style="width: 500px; height: 500px;">
+		<img src="route17.jpg" width="500" height="500" border="0" align="absmiddle"/>
+	</div>
+	<div id="vessel_status" style="width: 500px; background-color: White; ">
+		<table style="width: 100%; font: 11px Verdana, sans-serif;">
+			<tr>
+				<td style="border-bottom: solid 1px black;"><b>Vessel</b></td>
+				<td style="border-bottom: solid 1px black;"><b>Status</b></td>
+				<td style="border-bottom: solid 1px black;"><b>Heading</b></td>
+				<td style="border-bottom: solid 1px black;"><b>Last Update</b></td>
+			</tr>
+			<tr>
+				<td>Howe Sound Queen</td>
+				<td>Temporarily Off Line</td>
+				<td>N/A</td>
+				<td>3:48 PM</td>
+			</tr>
+		<tr><td colspan='4'>&nbsp;</td></tr>
+		<tr><td colspan='4'><i>Each arrow icon <IMG SRC='images/icon1.gif' WIDTH='14' HEIGHT='14'/ > represents one of our vessels.  To view vessel name, heading and speed, move your cursor over the arrow icon.  When <IMG SRC='images/icon0.gif' WIDTH='14' HEIGHT='14'/ > is displayed, the ship is in port.  Vessels not appearing on this map are either not yet in operation or are temporarily off line.</i></td></tr>
+		</table>
+	</div>
+	<div id="ferry_info" style="width: 230px; height: 145px; display: none; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: white; TEXT-ALIGN: center; font: 11px Verdana, sans-serif;"></div>
+  </body>
+</html>
