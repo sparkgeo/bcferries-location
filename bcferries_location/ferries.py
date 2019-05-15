@@ -1,5 +1,6 @@
 import re
 from collections import Iterable, namedtuple
+from datetime import datetime
 
 import requests
 
@@ -98,10 +99,11 @@ class Coordinate(object):
 
 
 class Vessel(object):
-    def __init__(self, name, coords, route, destination=None, heading=None, speed=None):
+    def __init__(self, name, coords, route, timestamp, destination=None, heading=None, speed=None):
         self.name = name
         self.coords = coords
         self.route = route
+        self.timestamp = timestamp
         self.destination = destination
         self.heading = heading
         self.speed = speed
@@ -114,6 +116,7 @@ class Vessel(object):
             destination=self.destination,
             heading=self.heading,
             speed=self.speed,
+            timestamp=self.timestamp.isoformat()
         )
 
     @property
@@ -148,7 +151,7 @@ def _fetch_local_file(path):
         return f.read()
 
 
-def _find_vessel_details(s, route_config):
+def _find_vessel_details(s, route_config, timestamp):
 
     x, y = _parse_pixel_coords(s)  # Web Mercator
     coords_3857 = _pixel_to_coords(
@@ -167,14 +170,16 @@ def _find_vessel_details(s, route_config):
         speed=metadata.get("speed"),
         coords=coords_4326,
         route=route_config.get("name"),
+        timestamp=timestamp
     )
 
 
 def _find_vessels(s, route_config):
     result = re.findall(vessel_details_pattern, s)
     output = []
+    timestamp = datetime.utcnow()
     for r in result:
-        output.append(_find_vessel_details(r, route_config))
+        output.append(_find_vessel_details(r, route_config, timestamp))
 
     return output
 
