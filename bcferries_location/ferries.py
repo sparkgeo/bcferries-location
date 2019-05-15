@@ -15,6 +15,9 @@ from .route_configs import (
     ROUTE_6,
     ROUTE_7,
     ROUTE_13,
+    ROUTE_16,
+    ROUTE_17,
+    ROUTE_18,
     ROUTE_19,
 )
 
@@ -28,6 +31,9 @@ ROUTE_CONFIGS = {
     6: ROUTE_6,
     7: ROUTE_7,
     13: ROUTE_13,
+    16: ROUTE_16,
+    17: ROUTE_17,
+    18: ROUTE_18,
     19: ROUTE_19,
 }
 
