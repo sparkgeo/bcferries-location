@@ -5,23 +5,9 @@ from datetime import datetime
 
 import requests
 
-from pyproj import Proj, transform
-
-from .route_configs import (
-    ROUTE_0,
-    ROUTE_1,
-    ROUTE_2,
-    ROUTE_3,
-    ROUTE_4,
-    ROUTE_5,
-    ROUTE_6,
-    ROUTE_7,
-    ROUTE_13,
-    ROUTE_16,
-    ROUTE_17,
-    ROUTE_18,
-    ROUTE_19,
-)
+from .route_configs import (ROUTE_0, ROUTE_1, ROUTE_2, ROUTE_3, ROUTE_4,
+                            ROUTE_5, ROUTE_6, ROUTE_7, ROUTE_13, ROUTE_16,
+                            ROUTE_17, ROUTE_18, ROUTE_19)
 
 ROUTE_CONFIGS = {
     0: ROUTE_0,
