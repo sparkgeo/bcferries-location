@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "bcferries-location"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Dustin Sampson <gridcell@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
 requests = "^2.21"
-pyproj = "^2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.3"

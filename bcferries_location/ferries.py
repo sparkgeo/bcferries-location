@@ -1,3 +1,4 @@
+import math
 import re
 from collections import Iterable, namedtuple
 from datetime import datetime
@@ -236,11 +237,15 @@ def _pixel_to_coords(pixelX, pixelY, coord0X, coord0Y, pixelWidth, pixelHeight):
     coordY = coord0Y - (pixelY * pixelHeight)
     return Coordinate(coordX, coordY)
 
-
 def _to_wgs84(coords):
-    inProj = Proj(init="epsg:3857")
-    outProj = Proj(init="epsg:4326")
-    return Coordinate(*transform(inProj, outProj, *coords))
+    x = coords.x
+    y = coords.y
+    R2D = 180 / math.pi
+    A = 6378137.0
+    lng, lat = (
+        x * R2D / A,
+        ((math.pi * 0.5) - 2.0 * math.atan(math.exp(-y / A))) * R2D)
+    return Coordinate(lng, lat)
 
 
 def fetch_route(route, route_configs=None):
